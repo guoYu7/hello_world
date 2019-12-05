@@ -2,6 +2,6 @@
 using namespace std;
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    cout<<"this is dev version"<<endl;
+    cout<<"this is master version"<<endl;
     return 0;
 }
