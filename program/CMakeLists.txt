@@ -2,5 +2,5 @@ cmake_minimum_required(VERSION 3.12)
 project(program)
 
 set(CMAKE_CXX_STANDARD 14)
-
-add_executable(program main.cpp)
+LINK_LIBRARIES(-lpthread)
+add_executable(program main.cpp )
