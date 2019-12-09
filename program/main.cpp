@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define NUM_THREADS     5
+#define NUM_THREADS 5
 
 void *PrintHello(void *threadid)
 {
@@ -24,7 +24,7 @@ int main ()
     int i;
     for( i=0; i < NUM_THREADS; i++ ){
         cout << "main() : 创建线程:" << i <<" "<<endl;
-        indexes[i] = i; //先保存i的值
+        indexes[i] = i;
         // 传入的时候必须强制转换为void* 类型，即无类型指针
         ////参数依次是：     创建的线程id，线程参数，调用的函数，    传入的函数参数
         rc = pthread_create(&threads[i], NULL, PrintHello, (void *)&(indexes[i]));
@@ -35,13 +35,6 @@ int main ()
     }
     pthread_exit(NULL);
 }
-
-
-
-
-
-
-
 
 
 //#include <iostream>
