@@ -20,7 +20,7 @@ void file_read(string input_file_name,vector<vector<T> >& v) {
         return;
     }
     string line;
-    while (getline(input_file, line)) {
+    while (getline(input_file, line)){
         istringstream iss(line);
         T temp;
         vector<T> v_temp;
