@@ -24,8 +24,7 @@ void file_read(string input_file_name,vector<vector<T> >& v) {
         istringstream iss(line);
         T temp;
         vector<T> v_temp;
-        while(iss>>temp)
-        {
+        while(iss>>temp){
             v_temp.push_back(temp);
         }
         v.push_back(v_temp);
