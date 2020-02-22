@@ -81,7 +81,7 @@ vector<vector<int> > dfs(vector<int>& nums){
 //这就是典型的回溯算法，k 限制了树的高度，n 限制了树的宽度，直接套我们以前讲过的回溯算法模板框架就行了：
 
 vector<vector<int> > res2;
-void backtrack2(vector<int> &nums,int k,int start, vector<int>& track){
+void backtrack2(vector<int>& nums,int k,int start, vector<int>& track){
     if(track.size() == k){
         res2.push_back(track);
         return;
