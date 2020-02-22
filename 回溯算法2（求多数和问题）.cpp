@@ -1,7 +1,7 @@
 // 题目四
-// 给定一个无重复元素的数组 candidates 和一个目标数 target ，
-// 找出 candidates 中所有可以使数字和为 target 的组合。
-// candidates 中的数字可以无限制重复被选取。
+// 给定一个无重复元素的数组 nums 和一个目标数 target ，
+// 找出 nums 中所有可以使数字和为 target 的组合。
+// nums 中的数字可以无限制重复被选取。
 
 vector<vector<int> > res4;
 void combine(int remain,int k,vector<int>& track,vector<int>& nums){
@@ -30,9 +30,9 @@ vector<vector<int>> combinationSum(vector<int>& nums, int target) {
 
 //---------------------------------------------
 // 题目五
-// 给定一个无重复元素的数组 candidates 和一个目标数 target ，
-// 找出 candidates 中所有可以使数字和为 target 的组合。
-// candidates 中的数字不能重复被选取。
+// 给定一个无重复元素的数组 nums 和一个目标数 target ，
+// 找出 nums 中所有可以使数字和为 target 的组合。
+// nums 中的数字不能重复被选取。
 
 vector<vector<int> > res5;
 void combine5(int remain,int k,vector<int>& track,vector<int>& nums){
