@@ -11,6 +11,20 @@ using namespace std;
 int _0_1_bag(int n,int all_weight, vector<int> &weight,vector<int> &value)
 {
 //0-1背包
+//一般版本
+//    vector<vector<int>> dp0(n + 1, vector<int>(all_weight + 1, 0));
+//    for (int i = 1; i <= n; i++)
+//    {
+//        for (int j = 1; j <= all_weight; j++)
+//        {
+//            if(weight[i] <= j)
+//                dp0[i][j] = max(dp0[i - 1][j], dp0[i - 1][j - weight[i]] + value[i]);
+//            else
+//                dp0[i][j] = dp0[i - 1][j];
+//        }
+//    }
+//    return dp0[n][all_weight];
+
     //优化版本
     vector<int> dp(all_weight + 1, 0);
     for (int i = 1; i <=n; i++)
