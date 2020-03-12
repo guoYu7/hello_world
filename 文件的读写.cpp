@@ -30,6 +30,8 @@ int main()
     return 0;
 }
 
+//读入未知长度的字符串，用逗号分割
+//1,2,1,2,3,1
 #include<algorithm>
 #include <iostream>
 #include <vector>
