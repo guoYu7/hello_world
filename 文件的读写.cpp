@@ -18,21 +18,38 @@ int main()
     while(f)
     {
         f>>ch>>a>>b>>c;
-        if(f)//×îºóÒ»´Î²Ù×÷Ê±£¬ËäÈ»fÎŞ·¨<<£¬µ«ÊÇa,b,cÈÔÈ»ÓĞÖµ£¬ËùÒÔ»¹ÊÇ»á¼ÆËãÒ»´Î£¬Ôì³É¶àÒ»ĞĞ
+        if(f)//ï¿½ï¿½ï¿½Ò»ï¿½Î²ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½È»fï¿½Ş·ï¿½<<ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½a,b,cï¿½ï¿½È»ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î£ï¿½ï¿½ï¿½É¶ï¿½Ò»ï¿½ï¿½
         {
             d = (a+b+c)/3.0f;
             o<<ch<<'\t'<<a<<'\t'<<b<<'\t'<<c<<'\t'<<d<<endl;
         }
-
-
-
     }
     f.close();
     o.close();
 
     return 0;
+}
 
+#include<algorithm>
+#include <iostream>
+#include <vector>
+#include<sstream>
+#include<numeric>
+#include<cstring>
 
+int main() {
+    vector<int> array;//å®šä¹‰ä¸€ä¸ªvectoræ•°ç»„array
+    string line;
+    getline(cin, line);
+    stringstream ss(line);
+    int temp;
+    string s0;
+    while (getline(ss, s0, ',')) {
+        temp = stoi(s0);
+        array.push_back(temp);
 
+    }
 
+    for (auto e:array)
+        cout << e << " ";
 }
