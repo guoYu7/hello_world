@@ -475,7 +475,7 @@ int main() {
         g.addEdge(a, b, w);//g.addEdge(a-1, b-1, w-1);
     }
 
-    int a = 3;
+    int a = 3;//出发点（源点）
     Dijkstra<SparseGraph<int>, int> dij(g, a);
 
     for (int i = 0; i < V; i++) {
