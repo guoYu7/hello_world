@@ -1,10 +1,9 @@
 //
 // Created by Zhangjun on 2020/3/13.
 //
-//
-// Created by Zhangjun on 2020/3/13.
-//
 
+//  dijkstra 不能解决负权边问题！！！！！！！！
+//  复杂度Elog（V）
 #include <iostream>
 #include <vector>
 #include <cassert>
@@ -354,6 +353,9 @@ public:
 
 };
 
+
+//  dijkstra 不能解决负权边问题！！！！！！！！
+//  复杂度Elog（V）
 template<typename Graph, typename Weight>
 class Dijkstra{
 
