@@ -1,7 +1,6 @@
 //
 // Created by Zhangjun on 2020/3/13.
 //
-
 #include <iostream>
 #include <vector>
 #include <cassert>
@@ -147,74 +146,6 @@ public:
         }
     };
 };
-class UnionFind{
-
-private:
-    int* parent;
-    int* rank;
-    int count;
-
-public:
-    UnionFind(int count){
-        parent = new int[count];
-        rank = new int[count];
-        this->count = count;
-        for( int i = 0 ; i < count ; i ++ ){
-            parent[i] = i;
-            rank[i] = 1;
-        }
-    }
-
-    ~UnionFind(){
-        delete[] parent;
-        delete[] rank;
-    }
-
-    int size(){
-        return count;
-    }
-
-    bool isConnected( int p , int q ){
-        return find(p) == find(q);
-    }
-
-    int find(int p){
-
-        assert( p >= 0 && p < count );
-
-        // path compression 1
-        while( p != parent[p] ){
-            parent[p] = parent[parent[p]];
-            p = parent[p];
-        }
-        return p;
-
-    }
-
-    void unionElements(int p, int q){
-
-        int pRoot = find(p);
-        int qRoot = find(q);
-
-        if( pRoot == qRoot )
-            return;
-
-        if( rank[pRoot] < rank[qRoot] )
-            parent[pRoot] = qRoot;
-        else if( rank[qRoot] < rank[pRoot])
-            parent[qRoot] = pRoot;
-        else{ // rank[pRoot] == rank[qRoot]
-            parent[pRoot] = qRoot;
-            rank[qRoot] ++;
-        }
-
-    }
-
-    void show(){
-        for( int i = 0 ; i < count ; i ++ )
-            cout<<i<<" : "<<parent[i]<<endl;
-    }
-};
 
 template<typename Item>
 class MinHeap{
@@ -302,33 +233,48 @@ public:
     }
 };
 
-template <typename Graph, typename Weight>
-class KruskalMST{
+template<typename Graph, typename Weight>
+class LazyPrimMST{
 
 private:
+    Graph &G;
     vector<Edge<Weight>> mst;
+
+    bool* marked;
+    MinHeap<Edge<Weight>> pq;
     Weight mstWeight;
 
+
+    void visit(int v){
+        assert( !marked[v] );
+        marked[v] = true;
+
+        typename Graph::adjIterator adj(G,v);
+        for( Edge<Weight>* e = adj.begin() ; !adj.end() ; e = adj.next() )
+            if( !marked[e->other(v)] )
+                pq.insert(*e);
+
+    }
 public:
-    KruskalMST(Graph &graph){
+    // 保证图是连通无向有权图
+    LazyPrimMST(Graph &graph):G(graph), pq(MinHeap<Edge<Weight>>(graph.E())){
 
-        MinHeap<Edge<Weight>> pq( graph.E() );
-        for( int i = 0 ; i < graph.V() ; i ++ ){
-            typename Graph::adjIterator adj(graph,i);
-            for( Edge<Weight> *e = adj.begin() ; !adj.end() ; e = adj.next() )
-                if( e->v() < e->w() )
-                    pq.insert(*e);
-        }
+        marked = new bool[G.V()];
+        for( int i = 0 ; i < G.V() ; i ++ )
+            marked[i] = false;
+        mst.clear();
 
-        UnionFind uf = UnionFind(graph.V());
-        while( !pq.isEmpty() && mst.size() < graph.V() - 1 ){
-
+        visit(0);
+        while( !pq.isEmpty() ){
             Edge<Weight> e = pq.extractMin();
-            if( uf.isConnected( e.v() , e.w() ) )
+            if( marked[e.v()] && marked[e.w()] )
                 continue;
 
-            mst.push_back( e );
-            uf.unionElements( e.v() , e.w() );
+            mst.push_back(e);
+            if( !marked[e.v()] )
+                visit(e.v());
+            if( !marked[e.w()] )
+                visit(e.w());
         }
 
         mstWeight = mst[0].wt();
@@ -336,8 +282,8 @@ public:
             mstWeight += mst[i].wt();
     }
 
-    ~KruskalMST(){
-
+    ~LazyPrimMST(){
+        delete[] marked;
     }
 
     vector<Edge<Weight>> mstEdges(){
@@ -370,10 +316,10 @@ int main() {
         g.addEdge(a, b, w);//g.addEdge(a-1, b-1, w-1);
     }
 
-    KruskalMST<SparseGraph<double>,double> kruskalMST(g);
+    LazyPrimMST<SparseGraph<double>,double> lazyPrimMST(g);
 
-    vector<Edge<double>> res_edge = kruskalMST.mstEdges();
-    double res_weight = kruskalMST.result();
+    vector<Edge<double>> res_edge = lazyPrimMST.mstEdges();
+    double res_weight = lazyPrimMST.result();
 
     cout<<res_weight<<endl;
 
@@ -383,24 +329,24 @@ int main() {
     return 0;
 }
 //  输入顶点数和边数
-7 9
-0 1 28
-1 2 16
-1 6 14
-2 3 12
-3 4 22
-3 6 18
-4 5 25
-4 6 24
-0 5 10
-    99
+//7 9
+//0 1 28
+//1 2 16
+//1 6 14
+//2 3 12
+//3 4 22
+//3 6 18
+//4 5 25
+//4 6 24
+//0 5 10
+//    99
 //
 //
-4 5
-1 2 2
-1 3 2
-1 4 3
-2 3 4
-3 4 3
+//    4 5
+//    1 2 2
+//    1 3 2
+//    1 4 3
+//    2 3 4
+//    3 4 3
 //    输出样例#1：
 //    7
