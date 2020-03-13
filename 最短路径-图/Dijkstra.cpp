@@ -371,7 +371,7 @@ public:
         distTo = new Weight[G.V()];
         marked = new bool[G.V()];
         for( int i = 0 ; i < G.V() ; i ++ ){
-            distTo[i] = Weight();
+            distTo[i] = Weight();//默认是0，由于不知道数据类型，采用模板类初始化
             marked[i] = false;
             from.push_back(NULL);
         }
@@ -379,7 +379,7 @@ public:
         IndexMinHeap<Weight> ipq(G.V());
 
         // start dijkstra
-        distTo[s] = Weight();
+        distTo[s] = Weight();//默认是0，由于不知道数据类型，采用模板类初始化
         ipq.insert(s, distTo[s] );
         marked[s] = true;
         while( !ipq.isEmpty() ){
