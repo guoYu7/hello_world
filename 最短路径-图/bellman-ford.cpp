@@ -1,14 +1,10 @@
 //
 // Created by Zhangjun on 2020/3/13.
 //
-
-//
-// Created by Zhangjun on 2020/3/13.
-//
 // 存在负权环的图，没有最短路径！！！！！！！！！
 //  bellman ford 能解决负权边问题！！！！！！！！并且能检测出负权环
 //  复杂度O（EV）
-//  测试有问题！！！！！！
+// bellman-ford算法必须要保证源点到所有路径是联通的，在此基础上求最小路径
 #include <iostream>
 #include <vector>
 #include <cassert>
@@ -285,7 +281,8 @@ int main() {
         g.addEdge(a, b, w);//g.addEdge(a-1, b-1, w-1);
     }
 
-    int a = 1;//出发点（源点）
+    int a = 0;//出发点（源点）
+    // bellman-ford算法必须要保证源点到所有路径是联通的，在此基础上求最小路径
     BellmanFord<SparseGraph<int>, int> bellmanFord(g, a);
     if( bellmanFord.negativeCycle() ){
         cout<<"The graph contain negative cycle!"<<endl;
@@ -307,6 +304,3 @@ int main() {
     }
     return 0;
 }
-
-
-
