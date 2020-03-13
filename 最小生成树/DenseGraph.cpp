@@ -1,11 +1,7 @@
 //
 // Created by Zhangjun on 2020/3/13.
 //
-
-//
-// Created by liuyubobobo on 9/28/16.
-//
-
+// 稀疏图和稠密图的主要区别是，点和边的比例，边的数量超过点数的平方，即可认为是稠密图
 #ifndef INC_05_IMPLEMENTATION_OF_BELLMAN_FORD_DENSEGRAPH_H
 #define INC_05_IMPLEMENTATION_OF_BELLMAN_FORD_DENSEGRAPH_H
 
