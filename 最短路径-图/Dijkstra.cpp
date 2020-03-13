@@ -462,15 +462,15 @@ int main() {
     getline(cin, line);
     stringstream ss(line);
     ss >> V >> E;//输入顶点数 边数
-
-    //SparseGraph<int> g = SparseGraph<int>(V, true);
-    SparseGraph<int> g = SparseGraph<int>(V, false);
+    // weight  weight
+    //SparseGraph<double> g = SparseGraph<double>(V, true);
+    SparseGraph<double> g = SparseGraph<double>(V, false);
     for (int i = 0; i < E; i++) {
         getline(cin, line1);
         stringstream ss0(line1);
 
         int a, b;
-        double w;//注意输入权重的数据类型
+        double w;//注意输入权重的数据类型 // weight
         ss0 >> a >> b >> w;
         assert(a >= 0 && a < V);//注意：编号从0开始！！！！！！！！！！！！！！
         assert(b >= 0 && b < V);//！！！！！！！！
@@ -478,7 +478,8 @@ int main() {
     }
 
     int a = 3;//出发点（源点）
-    Dijkstra<SparseGraph<int>, int> dij(g, a);
+    // weight  weight
+    Dijkstra<SparseGraph<double>, double> dij(g, a);
 
     for (int i = 0; i < V; i++) {
         if (i == a)
@@ -505,3 +506,12 @@ int main() {
 //2 3 3
 //3 4 2
 
+//5 8
+//0 1 5.01
+//0 2 2.01
+//0 3 6.01
+//1 4 1.01
+//2 1 1.01
+//2 4 5.01
+//2 3 3.01
+//3 4 2.01
