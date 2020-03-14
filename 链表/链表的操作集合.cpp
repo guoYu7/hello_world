@@ -18,10 +18,12 @@ ListNode* insertionSortList(ListNode* head) {
     cur = dummy;
     while(head){
         cur = dummy;
-        ListNode* t = head->next;
+        //根据head的val值，在dummy中找到head的合适位置
         while(cur->next&&cur->next->val <= head->val){
             cur=cur->next;
         }
+        //while循环结束后，找到了合适位置，改变指针方向，将head插入到dummy中
+        ListNode* t = head->next;
         head->next = cur->next;
         cur->next = head;
         head = t;
@@ -172,10 +174,6 @@ int main(){
 
     return 0;
 }
-
-
-
-
 
 
 
