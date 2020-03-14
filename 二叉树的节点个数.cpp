@@ -46,7 +46,3 @@ public int countNodes(TreeNode root) {
     return 1 + countNodes(root.left) + countNodes(root.right);
 }
 
-
-
-
-
