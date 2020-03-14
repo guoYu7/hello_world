@@ -77,7 +77,7 @@ int main()
 
     getline(cin, line);
     stringstream ss(line);
-    for(int i=1;i<=n;i++)
+    for(int i=1;i<=n;i++)//注意不从0开始，从1开始
     {
         ss>>temp;
 
@@ -89,7 +89,7 @@ int main()
     for(int i=1;i<=n;i++)
     {
         ss1>>temp;
-        weight[i] = temp;
+        weight[i] = temp;//注意不从0开始，从1开始
     }
 
     int res;
