@@ -53,3 +53,51 @@ int main() {
     }
     return 0;
 }
+
+//字节跳动 颜色问题（最小间距限制）
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <sstream>
+#include <map>
+#include <algorithm>
+
+using  namespace std;
+
+int main() {
+    map<int,vector<int>> mm;
+    string line;
+    getline(cin,line);
+    stringstream ss(line);
+    int n,m,c;
+    ss>>n>>m>>c;
+
+    for(int i=1;i<=n;i++){
+        getline(cin,line);
+        stringstream ss1(line);
+        int num;
+        ss1>>num;
+        int temp;
+        for(int j=0;j<num;j++){
+            ss1>>temp;
+            mm[temp].push_back(i);
+        }
+    }
+    int res=0;
+
+    for(int k = 1;k <= c; k++ ){
+        //判断头尾是否相连
+        if(mm[k][0]+n-mm[k][mm[k].size()-1] < m){
+            res++;
+            continue;
+        }
+        for(int s = 1;s<mm[k].size();s++){
+            if(mm[k][s]-mm[k][s-1] < m){
+                res++;
+                break;
+            }
+        }
+    }
+    cout<<res<<endl;
+    return 0;
+}
