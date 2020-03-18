@@ -17,9 +17,9 @@ int _0_1_bag(int n,int all_weight, vector<int> weight,vector<int> value)
 //    {
 //        for (int j = 1; j <= all_weight; j++)
 //        {
-//            if(weight[i] <= j)
+//            if(weight[i] <= j)  //关键是 j - weight[i]这里，我们要明白：要把这件物品放进背包，就得在背包里面预留这一部分空间。
 //                dp0[i][j] = max(dp0[i - 1][j], dp0[i - 1][j - weight[i]] + value[i]);
-//            else
+//            else //这里的f[i - 1][j - weight[i]] + value[i]应该这么理解：在没放这件物品之前的状态值加上要放进去这件物品的价值。
 //                dp0[i][j] = dp0[i - 1][j];
 //        }
 //    }

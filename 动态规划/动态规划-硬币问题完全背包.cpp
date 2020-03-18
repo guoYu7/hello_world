@@ -41,6 +41,21 @@ int absolute_bag1(int n,int all_weight, vector<int> &weight,vector<int> &value)
     return res;
 }
 
+
+int absolute_bag1_1(int n,int all_weight, vector<int> &weight,vector<int> &value)
+{
+//完全背包
+    vector<int> dp(all_weight + 1, all_weight);
+    dp[0] = 0;//注意！！！！！！！！！！！！！
+    for (int i = 1; i <=n; i++)
+        for (int j = weight[i]; j <=all_weight ;j++)
+            dp[j] = min(dp[j],dp[j - weight[i]] + value[i]);
+
+    int res = dp[all_weight];
+    return res;
+}
+
+
 int func(int N);//测试验证函数
 
 int main(){
