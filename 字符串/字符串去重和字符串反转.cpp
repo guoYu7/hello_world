@@ -33,6 +33,35 @@ void func(string &l1){
     }
 }
 
+
+#include<iostream>
+#include <sstream>
+#include <string>
+#include <algorithm>
+#include <math.h>
+using namespace std;
+//字符串去重
+string func(string &line){
+    string res;
+    bool b[50] = { 0 };
+
+    for (int j = 0; j < line.size(); j++){
+        if (b[line[j] - 'a'] == 0){
+            res = res + line[j];
+            b[line[j] - 'a'] = 1;//重复字符-'a'总是等于相同值，故重复字符对应的布尔值都为1；
+        }
+    }
+    return res;
+}
+
+
+
+
+
+
+
+
+
 int main(){
     int num;
 
