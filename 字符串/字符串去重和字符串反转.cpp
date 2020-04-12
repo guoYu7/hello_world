@@ -53,14 +53,12 @@ string func(string &line){
     }
     return res;
 }
-
-
-
-
-
-
-
-
+// 字符串反转 最简单做法
+string rever_func(string str){
+    reverse(str.begin(),str.end());
+    cout<<line<<endl;
+    return str;
+}
 
 int main(){
     int num;
