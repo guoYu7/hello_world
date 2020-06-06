@@ -117,7 +117,6 @@ public:
             return ismirror(p->left,q->right) && ismirror(p->right,q->left);
         return false;
     }
-
 };
 
 /**
