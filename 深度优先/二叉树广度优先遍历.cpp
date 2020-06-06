@@ -1,16 +1,13 @@
 /**
-¸ø¶¨Ò»¸ö¶þ²æÊ÷£¬·µ»ØÆä°´²ã´Î±éÀúµÄ½ÚµãÖµ¡£ £¨¼´Öð²ãµØ£¬´Ó×óµ½ÓÒ·ÃÎÊËùÓÐ½Úµã£©¡£
-ÀýÈç:
-¸ø¶¨¶þ²æÊ÷:0„2[3,9,20,null,null,15,7],
-
+ç»™å®šä¸€ä¸ªäºŒå‰æ ‘ï¼Œè¿”å›žå…¶æŒ‰å±‚æ¬¡éåŽ†çš„èŠ‚ç‚¹å€¼ã€‚ ï¼ˆå³é€å±‚åœ°ï¼Œä»Žå·¦åˆ°å³è®¿é—®æ‰€æœ‰èŠ‚ç‚¹ï¼‰ã€‚
+ä¾‹å¦‚:
+ç»™å®šäºŒå‰æ ‘: [3,9,20,null,null,15,7],
     3
    / \
   9  20
     /  \
    15   7
-
 https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
-
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -21,16 +18,16 @@ https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
  */
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) 
+    vector<vector<int>> levelOrder(TreeNode* root)
     {
         vector<vector<int> > u;
         if(!root)
             return u;
-        
+
         queue<TreeNode*> q;
-        
-        q.push(root);  
-        
+
+        q.push(root);
+
         while(!q.empty())
         {
             vector<int> v;
@@ -43,10 +40,10 @@ public:
                     q.push(temp->left);
                 if(temp->right)
                     q.push(temp->right);
-                
-            }            
-            u.push_back(v);            
+
+            }
+            u.push_back(v);
         }
-        return u;        
+        return u;
     }
 };

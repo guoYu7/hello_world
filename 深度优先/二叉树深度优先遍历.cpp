@@ -1,9 +1,13 @@
-/**
-¸ø¶¨Ò»¸ö¶þ²æÊ÷£¬ÅÐ¶ÏËüÊÇ·ñÊÇ¸ß¶ÈÆ½ºâµÄ¶þ²æÊ÷¡£
-±¾ÌâÖÐ£¬Ò»¿Ã¸ß¶ÈÆ½ºâ¶þ²æÊ÷¶¨ÒåÎª£º
-Ò»¸ö¶þ²æÊ÷Ã¿¸ö½Úµã µÄ×óÓÒÁ½¸ö×ÓÊ÷µÄ¸ß¶È²îµÄ¾ø¶ÔÖµ²»³¬¹ý1¡£
-https://leetcode-cn.com/problems/balanced-binary-tree/
+//
+// Created by Zhangjun on 2020/6/6.
+//
 
+
+/**
+ç»™å®šä¸€ä¸ªäºŒå‰æ ‘ï¼Œåˆ¤æ–­å®ƒæ˜¯å¦æ˜¯é«˜åº¦å¹³è¡¡çš„äºŒå‰æ ‘ã€‚
+æœ¬é¢˜ä¸­ï¼Œä¸€æ£µé«˜åº¦å¹³è¡¡äºŒå‰æ ‘å®šä¹‰ä¸ºï¼š
+ä¸€ä¸ªäºŒå‰æ ‘æ¯ä¸ªèŠ‚ç‚¹ çš„å·¦å³ä¸¤ä¸ªå­æ ‘çš„é«˜åº¦å·®çš„ç»å¯¹å€¼ä¸è¶…è¿‡1ã€‚
+https://leetcode-cn.com/problems/balanced-binary-tree/
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -14,34 +18,33 @@ https://leetcode-cn.com/problems/balanced-binary-tree/
  */
 class Solution {
 public:
-    bool isBalanced(TreeNode* root) 
+    bool isBalanced(TreeNode* root)
     {
         if(!root)
             return true;
         int l_depth = getdepth(root->left);
         int r_depth = getdepth(root->right);
-        
+
         if(abs(l_depth-r_depth)>1)
             return false;
-        return isBalanced(root->left) && isBalanced(root->right);       
+        return isBalanced(root->left) && isBalanced(root->right);
     }
-    
+
     int getdepth(TreeNode* node)
     {
         if(!node)
             return 0;
-            
+
         return 1+max(getdepth(node->left),getdepth(node->right));
-    }   
+    }
 };
 
 
 
 /**
-¸ø¶¨Ò»¸ö¶þ²æÊ÷£¬ÕÒ³öÆä×î´óÉî¶È¡£
-¶þ²æÊ÷µÄÉî¶ÈÎª¸ù½Úµãµ½×îÔ¶Ò¶×Ó½ÚµãµÄ×î³¤Â·¾¶ÉÏµÄ½ÚµãÊý¡£
+ç»™å®šä¸€ä¸ªäºŒå‰æ ‘ï¼Œæ‰¾å‡ºå…¶æœ€å¤§æ·±åº¦ã€‚
+äºŒå‰æ ‘çš„æ·±åº¦ä¸ºæ ¹èŠ‚ç‚¹åˆ°æœ€è¿œå¶å­èŠ‚ç‚¹çš„æœ€é•¿è·¯å¾„ä¸Šçš„èŠ‚ç‚¹æ•°ã€‚
 https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
-
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -52,10 +55,10 @@ https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
  */
 class Solution {
 public:
-    int maxDepth(TreeNode* root) 
+    int maxDepth(TreeNode* root)
     {
         if(!root)
-            return 0;        
+            return 0;
         return 1+max(maxDepth(root->left),maxDepth(root->right));
     }
 };
@@ -72,7 +75,7 @@ https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/submissions/
  */
 class Solution {
 public:
-    int minDepth(TreeNode* root) 
+    int minDepth(TreeNode* root)
     {
         if(!root)
             return 0;
@@ -86,17 +89,14 @@ public:
 
 
 /**
-¸ø¶¨Ò»¸ö¶þ²æÊ÷£¬¼ì²éËüÊÇ·ñÊÇ¾µÏñ¶Ô³ÆµÄ¡£
-
-ÀýÈç£¬¶þ²æÊ÷0„2[1,2,2,3,4,4,3] ÊÇ¶Ô³ÆµÄ¡£
-
+ç»™å®šä¸€ä¸ªäºŒå‰æ ‘ï¼Œæ£€æŸ¥å®ƒæ˜¯å¦æ˜¯é•œåƒå¯¹ç§°çš„ã€‚
+ä¾‹å¦‚ï¼ŒäºŒå‰æ ‘ [1,2,2,3,4,4,3] æ˜¯å¯¹ç§°çš„ã€‚
     1
    / \
   2   2
  / \ / \
 3  4 4  3
-
-Á´½Ó£ºhttps://leetcode-cn.com/problems/symmetric-tree
+é“¾æŽ¥ï¼šhttps://leetcode-cn.com/problems/symmetric-tree
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -109,9 +109,9 @@ class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
         return ismirror(root,root);
-        
+
     }
-    
+
     bool ismirror(TreeNode *p,TreeNode *q)
     {
         if(!p && !q)
@@ -122,22 +122,18 @@ public:
             return ismirror(p->left,q->right) && ismirror(p->right,q->left);
         return false;
     }
-    
 };
 
 /**
-¸ø¶¨Á½¸ö¶þ²æÊ÷£¬±àÐ´Ò»¸öº¯ÊýÀ´¼ìÑéËüÃÇÊÇ·ñÏàÍ¬¡£
-Èç¹ûÁ½¸öÊ÷ÔÚ½á¹¹ÉÏÏàÍ¬£¬²¢ÇÒ½Úµã¾ßÓÐÏàÍ¬µÄÖµ£¬ÔòÈÏÎªËüÃÇÊÇÏàÍ¬µÄ¡£
-Ê¾Àý0„21:
-ÊäÈë:       1         1
+ç»™å®šä¸¤ä¸ªäºŒå‰æ ‘ï¼Œç¼–å†™ä¸€ä¸ªå‡½æ•°æ¥æ£€éªŒå®ƒä»¬æ˜¯å¦ç›¸åŒã€‚
+å¦‚æžœä¸¤ä¸ªæ ‘åœ¨ç»“æž„ä¸Šç›¸åŒï¼Œå¹¶ä¸”èŠ‚ç‚¹å…·æœ‰ç›¸åŒçš„å€¼ï¼Œåˆ™è®¤ä¸ºå®ƒä»¬æ˜¯ç›¸åŒçš„ã€‚
+ç¤ºä¾‹ 1:
+è¾“å…¥:       1         1
           / \       / \
          2   3     2   3
-
         [1,2,3],   [1,2,3]
-
-Êä³ö: true
-Á´½Ó£ºhttps://leetcode-cn.com/problems/same-tree
-
+è¾“å‡º: true
+é“¾æŽ¥ï¼šhttps://leetcode-cn.com/problems/same-tree
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -148,39 +144,33 @@ public:
  */
 class Solution {
 public:
-    bool isSameTree(TreeNode* p, TreeNode* q) 
+    bool isSameTree(TreeNode* p, TreeNode* q)
     {
         if(!p &&!q)
             return true;
         if(!p || !q)
             return false;
-        
+
         if(p->val == q->val)
             return isSameTree(p->left,q->left) &&isSameTree(p->right,q->right);
-        
+
         return false;
     }
 };
 
 
 /**
-¸ø¶¨Ò»¸ö¶þ²æÊ÷£¬·µ»ØËùÓÐ´Ó¸ù½Úµãµ½Ò¶×Ó½ÚµãµÄÂ·¾¶¡£
-
-ËµÃ÷:0„2Ò¶×Ó½ÚµãÊÇÖ¸Ã»ÓÐ×Ó½ÚµãµÄ½Úµã¡£
-
-Ê¾Àý:
-
-ÊäÈë:
-
+ç»™å®šä¸€ä¸ªäºŒå‰æ ‘ï¼Œè¿”å›žæ‰€æœ‰ä»Žæ ¹èŠ‚ç‚¹åˆ°å¶å­èŠ‚ç‚¹çš„è·¯å¾„ã€‚
+è¯´æ˜Ž: å¶å­èŠ‚ç‚¹æ˜¯æŒ‡æ²¡æœ‰å­èŠ‚ç‚¹çš„èŠ‚ç‚¹ã€‚
+ç¤ºä¾‹:
+è¾“å…¥:
    1
  /   \
 2     3
  \
   5
-
-Êä³ö: ["1->2->5", "1->3"]
-Á´½Ó£ºhttps://leetcode-cn.com/problems/binary-tree-paths
-
+è¾“å‡º: ["1->2->5", "1->3"]
+é“¾æŽ¥ï¼šhttps://leetcode-cn.com/problems/binary-tree-paths
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -192,21 +182,19 @@ public:
 class Solution {
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
-        if (!root) 
+        if (!root)
             return {};
-        if (!root->left && !root->right) 
+        if (!root->left && !root->right)
             return {to_string(root->val)};
-        
+
         vector<string> left = binaryTreePaths(root->left);
-        vector<string> right = binaryTreePaths(root->right);        
+        vector<string> right = binaryTreePaths(root->right);
         left.insert(left.end(), right.begin(), right.end());
-        
-        for (auto &a : left) 
+
+        for (auto &a : left)
         {
             a = to_string(root->val) + "->" + a;
         }
         return left;
     }
 };
-
-
