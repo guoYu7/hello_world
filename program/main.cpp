@@ -1,4 +1,5 @@
 #include <iostream>
+<<<<<<< HEAD
 #include <cstdlib>
 //c++ 11 之后有了标准的线程库：
 //#include <thread>
@@ -67,3 +68,11 @@ int main ()
 //    //等各个线程退出后，进程才结束，否则进程强制结束了，线程可能还没反应过来；
 //    pthread_exit(NULL);
 //}
+=======
+using namespace std;
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    cout<<"dev"<<endl;
+    return 0;
+}
+>>>>>>> remotes/origin/dev
