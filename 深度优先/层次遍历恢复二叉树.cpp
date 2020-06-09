@@ -51,7 +51,6 @@
 #
 #
 #
-
 #include<iostream>
 #include<queue>
 #include<stack>
@@ -63,11 +62,36 @@ struct treenode{
     treenode(string x):val(x),left(NULL),right(NULL){};
 };
 
+//void preOrder(treenode* root){
+//    if(root){
+//        cout<<root->val<<endl;
+//        preOrder(root->left);
+//        preOrder(root->right);
+//    }
+//}
+
 void preOrder(treenode* root){
     if(root){
         cout<<root->val<<endl;
         preOrder(root->left);
         preOrder(root->right);
+    } else
+        cout<<"#"<<endl;
+}
+
+void preOrder_stack(treenode* root){
+    stack<treenode*> st;
+    st.push(root);
+    while (st.size()){
+        treenode* node = st.top();
+        st.pop();
+        if (!node)
+            cout << "#" << endl;
+        else{
+            cout << node->val << endl;
+            st.push(node->right);
+            st.push(node->left);
+        }
     }
 }
 
@@ -114,26 +138,10 @@ int main(){
             break;
     }
 
-    stack<treenode*> st;
-
-    st.push(root);
-    while (st.size()){
-        treenode* node = st.top();
-        st.pop();
-        if (!node)
-            cout << "#" << endl;
-        else{
-            cout << node->val << endl;
-            st.push(node->right);
-            st.push(node->left);
-        }
-    }
-
-    // preOrder(root);
+    preOrder_stack(root);
+    //preOrder(root);
     return 0;
 }
-
-
 
 /*
 const int N = 1e5 + 10;
@@ -147,7 +155,6 @@ node tr[N];
 queue< node* > q;
 string tree[N];
 stack<node*> st;
-
 void addnode(node* root, string val, int opt){
     //着重解释  opt 的含义   如果是  1   代表将她插入到   root 的左树中，2  代表插入到右树中
     int u = ++idx;
@@ -160,7 +167,6 @@ void addnode(node* root, string val, int opt){
     tr[u].l = tr[u].r = 0;    //作为一个新的节点  左右两树应该置位空
     tr[u].val = val;
 }
-
 void output()
 {
     st.push(&tr[1]);
@@ -176,7 +182,6 @@ void output()
             st.push(&tr[t->r]);
             st.push(&tr[t->l]);
         }
-
     }
 }
 int main()
@@ -185,20 +190,15 @@ int main()
     cin >> n;
     string s;
     cin >> s;
-
     tr[root].l = tr[root].r = 0;
     tr[root].val = s;
-
     q.push(&tr[root]);
-
     for (int i = 2; i <= n; i++)
         cin >> tree[i];    //规定  1是根节点，所以从2 开始
     int cur = 2;
-
     while (q.size()){  //如果写成   while(true)   会发生段错误
         node* t = q.front();
         q.pop();
-
         string l = tree[cur++];
         if (l != "#"){
             addnode(t, l, 1);
@@ -206,7 +206,6 @@ int main()
         }
         if (cur > n)
             break;   //坑 ：注意如果  这个下标已经超过 n  那么已经说明所有节点遍历完了，不要继续了
-
         string r = tree[cur++];
         if (r != "#"){
             addnode(t, r, 2);
